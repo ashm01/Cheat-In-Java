@@ -1,14 +1,16 @@
 
 package question1;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 
-public class Card implements Comparable<Card>  {
+public class Card implements Serializable, Comparable<Card>  {
 
     
     private Suit suit;
     private Rank rank;
+    private final double serialisationID = 100;
     
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
@@ -67,7 +69,7 @@ public class Card implements Comparable<Card>  {
     
     @Override
     public String toString() {
-        return String.format("Card is %s of %s", this.rank, this.suit);
+        return String.format("%s of %s", this.rank, this.suit);
     }
     
    
@@ -90,20 +92,34 @@ public class Card implements Comparable<Card>  {
       
    } 
    
-   public class CompareDescending implements Comparator<Card>{
+   public static class CompareDescending implements Comparator<Card>{
 
         @Override
         public int compare(Card c1, Card c2) {
-            return 0;
+            
+            if (c1.getRank().getRankValue()<c2.getRank().getRankValue()){
+                return -1;
+            }else if(c1.getRank().getRankValue()==c2.getRank().getRankValue()){
+                return 0;
+            }else 
+                return 1;
             
         }
     }
    
-   public class CompareSuit implements Comparator<Card>{
+   public static class CompareSuit implements Comparator<Card>{
 
         @Override
         public int compare(Card c1, Card c2) {
-            return 0;
+            
+            return c1.getSuit().compareTo(c2.getSuit());
+            
+//            if (c1.getRank().getRankValue()<c2.getRank().getRankValue()){
+//                return -1;
+//            }else if(c1.getRank().getRankValue()==c2.getRank().getRankValue()){
+//                return 0;
+//            }else 
+//                return 1;
             
         }
     }
