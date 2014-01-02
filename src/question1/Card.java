@@ -1,8 +1,10 @@
 
 package question1;
 
+import java.util.Comparator;
 
-public class Card implements Comparable<Card> {
+
+public class Card implements Comparable<Card>  {
 
     
     private Suit suit;
@@ -88,6 +90,23 @@ public class Card implements Comparable<Card> {
       
    } 
    
+   public class CompareDescending implements Comparator<Card>{
+
+        @Override
+        public int compare(Card c1, Card c2) {
+            return 0;
+            
+        }
+    }
+   
+   public class CompareSuit implements Comparator<Card>{
+
+        @Override
+        public int compare(Card c1, Card c2) {
+            return 0;
+            
+        }
+    }
     
     
     

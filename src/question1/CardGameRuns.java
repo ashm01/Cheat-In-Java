@@ -24,6 +24,12 @@ public class CardGameRuns {
         System.out.println(Card.Difference.difference(card1, card2));
         System.out.println(Card.Difference.differenceValue(card1, card5));
         System.out.println(Card.Difference.differenceValue(card3, card4));
+        
+        Deck deck1 = new Deck();
+        
+            
+        
+       
     }
     
 }
