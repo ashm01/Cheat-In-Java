@@ -16,10 +16,12 @@ public class Card implements Serializable, Comparable<Card>  {
         this.rank = rank;
         this.suit = suit;
     }
+
     
-    public enum Rank{ACE(1,11), TWO(2,2), THREE(3,3), FOUR(4,4), FIVE(5,5)
+    
+    public enum Rank{ TWO(2,2), THREE(3,3), FOUR(4,4), FIVE(5,5)
     ,SIX(6,6), SEVEN(7,7), EIGHT(8,8), NINE(9,9), TEN(10,10),
-    JACK(11,10), QUEEN(12,10), KING(13,10);
+    JACK(11,10), QUEEN(12,10), KING(13,10), ACE(14,11);
     
         final int cardValue;
         final int cardRankValue;
@@ -98,11 +100,11 @@ public class Card implements Serializable, Comparable<Card>  {
         public int compare(Card c1, Card c2) {
             
             if (c1.getRank().getRankValue()<c2.getRank().getRankValue()){
-                return -1;
+                return 1;
             }else if(c1.getRank().getRankValue()==c2.getRank().getRankValue()){
                 return 0;
             }else 
-                return 1;
+                return -1;
             
         }
     }
@@ -114,13 +116,7 @@ public class Card implements Serializable, Comparable<Card>  {
             
             return c1.getSuit().compareTo(c2.getSuit());
             
-//            if (c1.getRank().getRankValue()<c2.getRank().getRankValue()){
-//                return -1;
-//            }else if(c1.getRank().getRankValue()==c2.getRank().getRankValue()){
-//                return 0;
-//            }else 
-//                return 1;
-            
+
         }
     }
     

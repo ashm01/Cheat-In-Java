@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,27 +37,35 @@ public class CardGameRuns {
         System.out.println(Card.Difference.differenceValue(card3, card4));
         
         List<Card> listOfCards = new ArrayList<Card>();
-        listOfCards.add(card5);
-        listOfCards.add(card4);
-        listOfCards.add(card3);
-        listOfCards.add(card2);
         listOfCards.add(card1);
+        listOfCards.add(card2);
+        listOfCards.add(card3);
+        listOfCards.add(card4);
+        listOfCards.add(card5);
         
-        Collections.sort(listOfCards, new CompareDescending());
-        for (Card c : listOfCards) {
-		System.out.println(c);
-	}
-        System.out.println("");
-        Collections.sort(listOfCards, new CompareSuit());
-        for (Card c : listOfCards) {
-		System.out.println(c);
-	}
-        
-//        Deck deck1 = new Deck();
+//        Collections.sort(listOfCards, new CompareDescending());
+//        for (Card c : listOfCards) {
+//		System.out.println(c);
+//	}
+//        System.out.println("");
+//        Collections.sort(listOfCards, new CompareSuit());
+//        for (Card c : listOfCards) {
+//		System.out.println(c);
+//	}
+        Deck deck1 = new Deck();
 //        deck1.display();
 //        deck1.shuffleDeck();
-//        System.out.println("");
+        System.out.println("");
 //        deck1.display();
+        int count = 0;
+        Iterator<Card> it = deck1.iterator();
+        System.out.println(it.hasNext());
+        while(it.hasNext()){
+            System.out.println(count +" "+it.next());
+            count++;
+        }
+        
+        
 //        
 //        
 //        String filename = "test.ser";
