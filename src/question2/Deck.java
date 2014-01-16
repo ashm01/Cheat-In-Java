@@ -1,21 +1,21 @@
-package question1;
+package question2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
-import question1.Card.Rank;
-import question1.Card.Suit;
+import question2.Card.Suit;
+import question2.Card.Rank;
+
 
 public class Deck implements Serializable, Iterable<Card> {
 
     private final ArrayList<Card> deck;
-    private static final long serialVersionUID =101;
+    private static final long serialVersionUID  = 101;
 
     public Deck() {
 
-        deck = new ArrayList<Card>();
+        deck = new ArrayList<>();
         for (Suit s : Suit.values()) {
             for (Rank r : Rank.values()) {
                 Card nextCard = new Card(r, s);
@@ -63,11 +63,11 @@ public class Deck implements Serializable, Iterable<Card> {
 
     @Override
     public Iterator<Card> iterator() {
-        return new dealIterator();
+        return new Deck.dealIterator();
     }
     
     public Iterator<Card> oddEvenIterator() {
-        return new OddEvenIterator();
+        return new Deck.OddEvenIterator();
     }
     
 
@@ -106,12 +106,12 @@ public class Deck implements Serializable, Iterable<Card> {
 
     private class dealIterator implements Iterator<Card> {
 
-        int pos = deck.size()-1;
+        int pos = deck.size();
 
         @Override
         public boolean hasNext() {
 
-            if (pos >= 0) {
+            if (pos >= 1) {
                 return true;
 
             }
@@ -120,7 +120,8 @@ public class Deck implements Serializable, Iterable<Card> {
 
         @Override
         public Card next() {
-            return deck.get(pos--);
+            pos--;
+            return deck.get(pos);
           
         }
 

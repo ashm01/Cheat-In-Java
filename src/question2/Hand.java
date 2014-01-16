@@ -1,17 +1,17 @@
-package question1;
+package question2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import question1.Card.CompareDescending;
-import question1.Card.CompareSuit;
+import question2.Card.CompareDescending;
+import question2.Card.CompareSuit;
 
 public class Hand implements Iterable<Card>, Serializable {
     
     private final ArrayList<Card> hand;
-    private static final long serialVersionUID  = 102;
+    private static final long serialVersionUID = 102;
     private int[] rankCount = new int[13];
     private int[] suitCount = new int[4];
     
@@ -99,18 +99,20 @@ public class Hand implements Iterable<Card>, Serializable {
         Card[] temp = new Card[h.size()];
         for (Card c : h) {
             if (hand.contains(c)) {
-                int rank = c.getRank().cardRankValue - 2;
+                int pos = c.getRank().cardRankValue - 2;
                 int suit = c.getSuit().ordinal();
-                rankCount[rank]--; 
+                rankCount[pos]--; 
                 suitCount[suit]--;
                 temp[count] = c;                
                 count++;
+                System.out.println(pos +" number of ="+rankCount[pos]);
             }else return false;
             
         }
         for (int i = 0; i < temp.length; i++) {
             hand.remove(temp[i]);
         }
+        
         return true;
     }
     
@@ -172,7 +174,12 @@ public class Hand implements Iterable<Card>, Serializable {
 
     @Override
     public String toString() {
-        return "Your Hand is:" + hand;
+        StringBuilder sb = new StringBuilder();
+        for (Card c : this.hand) {
+            
+            sb.append(c.toString()+"\n");
+        }
+        return sb.toString();
     }
     
     public boolean isFlush(){

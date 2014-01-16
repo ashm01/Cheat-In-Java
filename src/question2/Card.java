@@ -1,18 +1,19 @@
 
-package question1;
+package question2;
 
 import java.io.Serializable;
 import java.util.Comparator;
 
 
+
 public class Card implements Serializable, Comparable<Card>  {
 
     
-    private Suit suit;
-    private Rank rank;
-    private static final long serialVersionUID = 100;
+    private Card.Suit suit;
+    private Card.Rank rank;
+    private static final long serialVersionUID  = 100;
     
-    public Card(Rank rank, Suit suit) {
+    public Card(Card.Rank rank, Card.Suit suit) {
         this.rank = rank;
         this.suit = suit;
     }
@@ -36,7 +37,7 @@ public class Card implements Serializable, Comparable<Card>  {
             this.cardRankValue = rank;
         }
     
-        public Rank getNext(){
+        public Card.Rank getNext(){
             //Gets the next enum...... King.getNext returns Ace 
             return values()[(ordinal()+1)%values().length];
             }
@@ -63,11 +64,11 @@ public class Card implements Serializable, Comparable<Card>  {
      return compare ;  
     }
 
-    public Suit getSuit() {
+    public Card.Suit getSuit() {
         return suit;
     }
 
-    public Rank getRank() {
+    public Card.Rank getRank() {
         return rank;
     }
      
