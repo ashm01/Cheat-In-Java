@@ -20,7 +20,7 @@ public class BasicCheat implements CardGame{
         players=new Player[nosPlayers];
         for(int i=0;i<nosPlayers;i++)
         {
-                players[i]=(new BasicPlayer(new BasicStrategy(),this));
+                players[i]=(new BasicPlayer(new HumanStrategy(),this));
         }
         currentBid=new Bid();
         currentBid.setRank(Card.Rank.TWO);
@@ -42,6 +42,7 @@ public class BasicCheat implements CardGame{
         boolean cheat=false;
         for(int i=0;i<players.length && !cheat;i++){
             if(i!=currentPlayer){
+                System.out.println("Player "+(i+1));
                 cheat=players[i].callCheat(currentBid);
                 if(cheat){
                     System.out.println("Player called cheat by Player "+(i+1));

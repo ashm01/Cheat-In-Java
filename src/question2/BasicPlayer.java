@@ -13,8 +13,8 @@ public class BasicPlayer implements Player {
     private CardGame cardGame;
     private Hand hand;
 
-    BasicPlayer(BasicStrategy basicStrategy, BasicCheat game) {
-        this.strategy = basicStrategy;
+    BasicPlayer(Strategy strategy, BasicCheat game) {
+        this.strategy = strategy;
         this.cardGame = game;
         this.hand = new Hand();
     }

@@ -42,10 +42,10 @@ public class CardTest {
         {
             if(count1 % 5 ==0)
             {
-                System.out.printf("%s %n",it.next());
+                System.out.printf("%2d %s %n",count1,it.next());
             }else
             {
-                System.out.printf("%-25s ",it.next());
+                System.out.printf("%2d %-25s ",count1,it.next());
             }
             count1++;
         }
