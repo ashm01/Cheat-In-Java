@@ -11,18 +11,11 @@ public class BasicStrategy implements Strategy {
     @Override
     public boolean cheat(Bid b, Hand h) {
        
-        if (b.getRank() != Card.Rank.ACE) {
+        
             if (h.countRank(b.getRank().getRankValue()) > 0
-                    || h.countRank(b.getRank().getRankValue() + 1) > 0) {
+                    || h.countRank(b.getRank().getNext().getRankValue()) > 0) {
                 return false;
             }
-        } else {
-            if (h.countRank(b.getRank().getRankValue()) > 0
-                    || h.countRank(2) > 0) {
-                return false;
-
-            }
-        }
        
         return true;
 
@@ -71,6 +64,7 @@ public class BasicStrategy implements Strategy {
                 }
                 rank = b.getRank().getNext();
                 h.remove(tempHand);
+                
                 
             }
             

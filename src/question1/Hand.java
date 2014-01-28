@@ -22,8 +22,14 @@ public class Hand implements Iterable<Card>, Serializable {
     
     public Hand(ArrayList<Card> h) {
         
-        this.hand = h;
-        suitAndRankCounter();
+        hand = new ArrayList();
+        for (Card c : h){
+            
+            hand.add(c);
+            
+            
+        }
+        
     }
     
     public Hand(Hand h){
@@ -32,22 +38,9 @@ public class Hand implements Iterable<Card>, Serializable {
         for (Card c : h){
             
             hand.add(c);
-            suitAndRankCounter();
+            
             
         }
-    }
-    
-    
-    
-    private void suitAndRankCounter(){
-        for (Card c : hand) {
-        int rank = c.getRank().cardRankValue - 2;
-        int suit = c.getSuit().ordinal();    
-        rankCount[rank]++;
-        suitCount[suit]++;  
-        
-        }
-        
     }
     
     public void add(Card c) {
@@ -172,7 +165,12 @@ public class Hand implements Iterable<Card>, Serializable {
 
     @Override
     public String toString() {
-        return "Your Hand is:" + hand;
+        StringBuilder sb = new StringBuilder();
+        for (Card c : this.hand) {
+            
+            sb.append(c.toString()+"\n");
+        }
+        return sb.toString();
     }
     
     public boolean isFlush(){

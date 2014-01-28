@@ -8,6 +8,10 @@ import java.util.Iterator;
 import question2.Card.CompareDescending;
 import question2.Card.CompareSuit;
 
+/**
+ *
+ * @author Ash
+ */
 public class Hand implements Iterable<Card>, Serializable {
     
     private final ArrayList<Card> hand;
@@ -15,41 +19,49 @@ public class Hand implements Iterable<Card>, Serializable {
     private int[] rankCount = new int[13];
     private int[] suitCount = new int[4];
     
+    /**
+     *
+     */
     public Hand() {
         
         this.hand = new ArrayList();
     }
     
+    /**
+     *
+     * @param h
+     */
     public Hand(ArrayList<Card> h) {
         
-        this.hand = h;
-        suitAndRankCounter();
+        hand = new ArrayList();
+        for (Card c : h){
+            
+            hand.add(c);
+               
+        }
+        
     }
     
+    /**
+     *
+     * @param h
+     */
     public Hand(Hand h){
         
         hand = new ArrayList();
         for (Card c : h){
             
             hand.add(c);
-            suitAndRankCounter();
-            
+               
         }
     }
     
     
     
-    private void suitAndRankCounter(){
-        for (Card c : hand) {
-        int rank = c.getRank().cardRankValue - 2;
-        int suit = c.getSuit().ordinal();    
-        rankCount[rank]++;
-        suitCount[suit]++;  
-        
-        }
-        
-    }
-    
+    /**
+     *
+     * @param c
+     */
     public void add(Card c) {
         int rank = c.getRank().cardRankValue - 2;
         int suit = c.getSuit().ordinal();
@@ -58,6 +70,10 @@ public class Hand implements Iterable<Card>, Serializable {
         suitCount[suit]++;
     }
     
+    /**
+     *
+     * @param cards
+     */
     public void add(Collection<Card> cards) {
         for (Card c : cards) {
             int pos = c.getRank().cardRankValue - 2;
@@ -69,6 +85,10 @@ public class Hand implements Iterable<Card>, Serializable {
         
     }
     
+    /**
+     *
+     * @param h
+     */
     public void add(Hand h) {
         for (Card c : h) {
             int pos = c.getRank().cardRankValue - 2;
@@ -79,6 +99,11 @@ public class Hand implements Iterable<Card>, Serializable {
         }
     }
     
+    /**
+     *
+     * @param c
+     * @return
+     */
     public boolean remove(Card c) {
         for (Card temp : hand) {
             if (temp == c) {
@@ -93,6 +118,11 @@ public class Hand implements Iterable<Card>, Serializable {
         return false;
     }
     
+    /**
+     *
+     * @param h
+     * @return
+     */
     public boolean remove(Hand h) {
         int count = 0;
         
@@ -105,7 +135,7 @@ public class Hand implements Iterable<Card>, Serializable {
                 suitCount[suit]--;
                 temp[count] = c;                
                 count++;
-                System.out.println(pos +" number of ="+rankCount[pos]);
+                
             }else return false;
             
         }
@@ -116,6 +146,11 @@ public class Hand implements Iterable<Card>, Serializable {
         return true;
     }
     
+    /**
+     *
+     * @param pos
+     * @return
+     */
     public Card remove(int pos) {
         Card temp = hand.get(pos);
         int rank = temp.getRank().cardRankValue - 2;
@@ -132,6 +167,10 @@ public class Hand implements Iterable<Card>, Serializable {
         return hand.iterator();
     }
     
+    /**
+     *
+     * @return
+     */
     public int size() {
         
         int size = 0;
@@ -142,28 +181,51 @@ public class Hand implements Iterable<Card>, Serializable {
         return size;
     }
     
+    /**
+     *
+     */
     public void sortAscending(){
         
         Collections.sort(hand);
     }
     
+    /**
+     *
+     */
     public void sortDescending(){
         Collections.sort(hand, new CompareDescending());
     }
     
+    /**
+     *
+     */
     public void sortSuit(){
         Collections.sort(hand, new CompareSuit());
     }
     
+    /**
+     *
+     * @param rank
+     * @return
+     */
     public int countRank(int rank){
         
         return rankCount[rank-2];
     }
     
+    /**
+     *
+     * @param suit
+     * @return
+     */
     public int countSuit(int suit){
         
         return suitCount[suit];
     }
+    /**
+     *
+     * @return
+     */
     public int handValue(){
         int handValue = 0;
         for (Card c : hand) {
@@ -172,6 +234,10 @@ public class Hand implements Iterable<Card>, Serializable {
         return handValue;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -182,6 +248,10 @@ public class Hand implements Iterable<Card>, Serializable {
         return sb.toString();
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isFlush(){
         
         for (int i = 0; i < this.size()-1; i++) {
@@ -193,6 +263,10 @@ public class Hand implements Iterable<Card>, Serializable {
         return true;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isStraight(){
         this.sortAscending();
         for (int i = 0; i < this.size()-1; i++) {

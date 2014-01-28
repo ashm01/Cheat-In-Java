@@ -37,7 +37,7 @@ public class Card implements Serializable, Comparable<Card>  {
         }
     
         public Rank getNext(){
-            //Gets the next enum...... King.getNext returns Ace 
+            //Gets the next enum...... ACE.getNext returns two 
             return values()[(ordinal()+1)%values().length];
             }
         

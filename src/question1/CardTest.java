@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class CardTest {
 
@@ -22,15 +23,21 @@ public class CardTest {
         while (it.hasNext()) 
         {
             //If statement to have 5 cards on each line
-            if(count % 5 ==0)
+            if(count % 4 ==0)
             {
-                System.out.printf("%s %n",it.next());
+                System.out.printf("%2d %s %n",count,it.next());
             }else
             {
-                System.out.printf("%-25s ",it.next());
+                System.out.printf("%2d %-25s ",count,it.next());
             }
             count++;
         }
+        //Asking the user whether they would like to continue onto the next step
+        Scanner input = new Scanner(System.in);
+        System.out.println("\nPress any key to continue or enter Q to quit>");
+        String str=input.nextLine();
+        if(str.equals("Q")||str.equals("q")||str.equals("quit"))
+              System.exit(0);
         //Changing the iteration to the oddeven iterator
         it = deck.oddEvenIterator();
         //counter for the while loop
@@ -40,7 +47,7 @@ public class CardTest {
         System.out.println("\n\nOdd Even Iteration:");
         while (it.hasNext()) 
         {
-            if(count1 % 5 ==0)
+            if(count1 % 4 ==0)
             {
                 System.out.printf("%2d %s %n",count1,it.next());
             }else
@@ -49,6 +56,12 @@ public class CardTest {
             }
             count1++;
         }
+        //Asking the user whether they would like to continue onto the next step
+        input = new Scanner(System.in);
+        System.out.println("\nPress any key to continue or enter Q to quit>");
+        str=input.nextLine();
+        if(str.equals("Q")||str.equals("q")||str.equals("quit"))
+              System.exit(0);
         //Shuffling the deck
         deck.shuffleDeck();
        //Initialising the four hands 
@@ -102,6 +115,14 @@ public class CardTest {
         System.out.println("Straight:"+hand4.isStraight());
         System.out.println(divider);
         //Saving the hands
+        
+        //Asking the user whether they would like to continue onto the next step
+        input = new Scanner(System.in);
+        System.out.println("\nPress any key to continue or enter Q to quit>");
+        str=input.nextLine();
+        if(str.equals("Q")||str.equals("q")||str.equals("quit"))
+              System.exit(0);
+        
         String filename = "hands.ser";
         try{
         FileOutputStream fos = new  FileOutputStream (filename); 
@@ -122,11 +143,18 @@ public class CardTest {
         hand4.sortSuit();
         //Printing the hands
         System.out.println("\nHands After sort:");
-        System.out.println("Hand 1(Ascending): "+hand1.toString());
-        System.out.println("Hand 2(Ascending): "+hand2.toString());
-        System.out.println("Hand 3(Descending): "+hand3.toString());
-        System.out.println("Hand 4(Suit): "+hand4.toString());
+        System.out.println("Hand 1(Ascending): \n"+hand1.toString());
+        System.out.println("Hand 2(Ascending): \n"+hand2.toString());
+        System.out.println("Hand 3(Descending): \n"+hand3.toString());
+        System.out.println("Hand 4(Suit): \n"+hand4.toString());
         System.out.println(divider);
+        
+        //Asking the user whether they would like to continue onto the next step
+        input = new Scanner(System.in);
+        System.out.println("\nPress any key to continue or enter Q to quit>");
+        str=input.nextLine();
+        if(str.equals("Q")||str.equals("q")||str.equals("quit"))
+              System.exit(0);
         
         //Loading hands which where saved earlier
         try{
@@ -142,12 +170,19 @@ public class CardTest {
         }
         
          //Printing the hands that hav just been loaded
-        System.out.println("\nHands After sort:");
-        System.out.println("Hand 1: "+hand1.toString());
-        System.out.println("Hand 2: "+hand2.toString());
-        System.out.println("Hand 3: "+hand3.toString());
-        System.out.println("Hand 4: "+hand4.toString());
+        System.out.println("\nHands after being loaded from previos save:");
+        System.out.println("Hand 1: \n"+hand1.toString());
+        System.out.println("Hand 2: \n"+hand2.toString());
+        System.out.println("Hand 3: \n"+hand3.toString());
+        System.out.println("Hand 4: \n"+hand4.toString());
         System.out.println(divider);
+        
+        //Asking the user whether they would like to continue onto the next step
+        input = new Scanner(System.in);
+        System.out.println("\nPress any key to continue or enter Q to quit>");
+        str=input.nextLine();
+        if(str.equals("Q")||str.equals("q")||str.equals("quit"))
+              System.exit(0);
         
         Iterator<Card> it2 = hand1.iterator();
         while(it2.hasNext())
@@ -159,11 +194,18 @@ public class CardTest {
         }
         //Print outs showing the changes to the hands
         System.out.println("\nHands After Add/Remove Iteration:");
-        System.out.println("Hand 1: "+hand1.toString());
-        System.out.println("Hand 2: "+hand2.toString());
-        System.out.println("Hand 3: "+hand3.toString());
-        System.out.println("Hand 4: "+hand4.toString());
+        System.out.println("Hand 1: \n"+hand1.toString());
+        System.out.println("Hand 2: \n"+hand2.toString());
+        System.out.println("Hand 3: \n"+hand3.toString());
+        System.out.println("Hand 4: \n"+hand4.toString());
         System.out.println(divider);
+        
+        //Asking the user whether they would like to continue onto the next step
+        input = new Scanner(System.in);
+        System.out.println("\nPress any key to continue or enter Q to quit>");
+        str=input.nextLine();
+        if(str.equals("Q")||str.equals("q")||str.equals("quit"))
+              System.exit(0);
         
         //Rearranging the hands so each hand 2 to Ace of the same suit
         hand2.add(hand3);
@@ -204,10 +246,10 @@ public class CardTest {
         hand4.sortAscending();
         //Print outs showing the changes to the hands
         System.out.println("\nHands After Sorted into Suits 2 to Ace:");
-        System.out.println("Hand 1: "+hand1.toString());
-        System.out.println("Hand 2: "+hand2.toString());
-        System.out.println("Hand 3: "+hand3.toString());
-        System.out.println("Hand 4: "+hand4.toString());
+        System.out.println("Hand 1: \n"+hand1.toString());
+        System.out.println("Hand 2: \n"+hand2.toString());
+        System.out.println("Hand 3: \n"+hand3.toString());
+        System.out.println("Hand 4: \n"+hand4.toString());
         System.out.println(divider);
         
         

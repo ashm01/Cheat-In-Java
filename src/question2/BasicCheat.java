@@ -3,7 +3,7 @@ package question2;
 import java.util.*;
 
 public class BasicCheat implements CardGame{
-    private Player[] players;
+    private AdvancedPlayer[] players;
     private int nosPlayers;
     public static final int MINPLAYERS=5;
     private int currentPlayer;
@@ -17,10 +17,10 @@ public class BasicCheat implements CardGame{
     }
     public BasicCheat(int n){
         nosPlayers=n;
-        players=new Player[nosPlayers];
+        players=new AdvancedPlayer[nosPlayers];
         for(int i=0;i<nosPlayers;i++)
         {
-                players[i]=(new BasicPlayer(new HumanStrategy(),this));
+                players[i]=(new AdvancedPlayer(new ThinkerStrategy(),this));
         }
         currentBid=new Bid();
         currentBid.setRank(Card.Rank.TWO);
@@ -34,6 +34,7 @@ public class BasicCheat implements CardGame{
         System.out.println("current bid = "+currentBid);
         
         currentBid=players[currentPlayer].playHand(currentBid);
+        
         currentBid.setRank(currentBid.getRank());
         System.out.println("Player bid = "+currentBid);
          //Add hand played to discard pile
@@ -42,7 +43,7 @@ public class BasicCheat implements CardGame{
         boolean cheat=false;
         for(int i=0;i<players.length && !cheat;i++){
             if(i!=currentPlayer){
-                System.out.println("Player "+(i+1));
+                //System.out.println("Player "+(i+1));
                 cheat=players[i].callCheat(currentBid);
                 if(cheat){
                     System.out.println("Player called cheat by Player "+(i+1));
@@ -53,6 +54,11 @@ public class BasicCheat implements CardGame{
                         System.out.println("Player cheats!");
                         System.out.println("Adding cards to player "+
                                 (currentPlayer+1)+players[currentPlayer]);
+                        //resets each players discarded cards once cheat has 
+                        //been succesfully called
+                        for (int j = 0; j < players.length; j++) {
+                            players[j].resetDiscards();
+                        }
 
                     }
                     else{
@@ -63,6 +69,11 @@ public class BasicCheat implements CardGame{
                         players[currentPlayer].addHand(discards);
                         System.out.println("Adding cards to player "+
                                 (currentPlayer+1)+players[currentPlayer]);
+                        //resets each players discarded cards once cheat has 
+                        //been succesfully called
+                        for (int j = 0; j < players.length; j++) {
+                            players[j].resetDiscards();
+                        }
                     }
 //If cheat is called, current bid reset to an empty bid with rank two whatever 
 //the outcome
@@ -80,6 +91,7 @@ public class BasicCheat implements CardGame{
         }
         return true;
     }
+    @Override
     public int winner(){
             for(int i=0;i<nosPlayers;i++){
                     if(players[i].cardsLeft()==0)
@@ -88,6 +100,7 @@ public class BasicCheat implements CardGame{
             return -1;
 
     }
+    @Override
     public void initialise(){
             //Create Deck of cards
             Deck d=new Deck();
